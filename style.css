@@ -3,15 +3,17 @@ h1 {
 }
 form h2 {
 	padding-top: 20px;
+	font-size: 30px;
 }
 form {
 	margin: 0 auto;
-	width: 800px;
-	height: 400px; 
+	width: 900px;
+	height: 300px; 
 	background-color: #33fff6;
+	font-size: 25px;
 }
 input {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 legend {
 	margin: 0 auto;
@@ -19,5 +21,9 @@ legend {
 label {
 	padding-left: 10px;
 	margin-bottom: 20px;
-	font-size: 20px;
+
+}
+.questionsCounter {
+	margin: 0 auto;
+	width: 800px; 
 }

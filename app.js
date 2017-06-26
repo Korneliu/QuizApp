@@ -1,9 +1,18 @@
 $(document).ready(function() {
+
+
+	//function startQuiz() {
+
+  	//$('#quiz').html('<h1>Star Citizen Quiz</h1>').fadeOut(4000);
+
+	//};
+  //startQuiz();
+
 	var QUIZ = {
 		name: 'StarCitizen',
 		questions: [
 			{
-				text: "What CIG stands for",
+				text: "What CIG stands for?",
 				answers: ["Company Info Group","Cloud Independent Group","Cloud Imperium Games","None of the above"],
 				correct: 2
 			},
@@ -13,25 +22,52 @@ $(document).ready(function() {
 				correct: 1
 			},
 			{
-				text: "What's Brian Chamber position in CIG",
+				text: "What's Brian Chamber position in CIG?",
 				answers: ["Development Director","Senior Designer","Q&A Director","None of the above"],
 				correct: 0
 			},
 			{
-				text: "Which company make Herald",
+				text: "Which company makes Herald",
 				answers: ["Anvil","RSI","Drake","Aegis"],
-				correct: 3
+				correct: 2
+		  },
+		  {
+		  	text: "What's the name of the single player campaing? ",
+		  	answers: ["Squadron 42","Squadron 43","Star Wars 3","Vanishing Star"],
+		  	correct: 0
+		  },
+		  {
+		  	text: "Which company makes Constellation?",
+		  	answers: ["Anvil","Aegis","Drake","RSI"],
+		  	correct: 3
+		  },
+		  {
+		  	text: "Who's Mark Abent?",
+		  	answers: ["Senior Designer","Accountant","Web Developer","Bugsmasher"],
+		  	correct: 3
+		  },
+		  {
+		  	text: "Who's Star Citizen main designer?",
+		  	answers: ["Chris Roberts","John Wick","Jennifer Larson","Linda Wright"],
+		  	correct: 0
+		  },
+		  {
+		  	text: "Star Citizen is build on ...",
+		  	answers: ["Unity","CryEngine","Star Engine","Amazon Lumberyard"],
+		  	correct: 3
+		  },
+		  {
+		  	text: "What's the name of the noodle machine in Star Citizen",
+		  	answers: ["Kimmie","Big Tom","Big Benny's","Miao Lee"],
+		  	correct: 2
 		  }
 		]
-	}
+	};
 	var currentQuestion = 0;
-
-
-//<legend><h2 class="questionHeader">What does CIG stand for:</h2></legend>
-//				<input type="radio"  id="radio1" name="answers">
-//				<label for="radio1">Company Info Group</label>
-//			<br>
-
+	var scoreCount = 0;
+  
+  
+  	
 
 	function showQuestion() {
 		var html = '<legend><h2 class="questionHeader">'+QUIZ.questions[currentQuestion].text +'</h2></legend>';
@@ -41,10 +77,32 @@ $(document).ready(function() {
 		}
 		html += `<input id="clicker" type="submit" value="Submit">`;
     $('#questionForm').html(html);
-	}				
+	};			
 	showQuestion();
-});
 
+	$('#questionForm').submit(function(e) {
+		e.preventDefault();
+		var answer = $('input[name = "answers"]:checked').val();
+		if (answer == QUIZ.questions[currentQuestion].correct) {
+			scoreCount++;
+			$('.answeredQuestion').text(scoreCount +' correct answers');
+		} else {
+			$('.answeredQuestion').text('Correct answer was: '+ QUIZ.questions[currentQuestion].answers[QUIZ.questions[currentQuestion].correct]).fadeOut(2000);
+			
+			};
+			currentQuestion++;
+		if (currentQuestion < QUIZ.questions.length) {
+			showQuestion();
+		} else {
+			$('#questionForm').html('<h1>Quiz finished</h1>');
+		}
+		
+	});
+
+});
+	
+	//setTimeout(function() {
+			//},2000);
 
 
 
@@ -52,23 +110,6 @@ $(document).ready(function() {
      
 
 
-//QUIZ.questions[currentQuestion].answers[QUIZ.questions[currentQuestion].correct];
-
-
-
-	
-
-	//initialize variables
-
-
-	//question display function
-
-
-	//submit form listener
-
-
-	//show results function
-	
 
 
 
