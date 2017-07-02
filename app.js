@@ -1,13 +1,6 @@
 $(document).ready(function() {
 
 
-	//function startQuiz() {
-
-  	//$('#quiz').html('<h1>Star Citizen Quiz</h1>').fadeOut(4000);
-
-	//};
-  //startQuiz();
-
 	var QUIZ = {
 		name: 'StarCitizen',
 		questions: [
@@ -66,43 +59,45 @@ $(document).ready(function() {
 	var currentQuestion = 0;
 	var scoreCount = 0;
   
-  
-  	
-
 	function showQuestion() {
 		var html = '<legend><h2 class="questionHeader">'+QUIZ.questions[currentQuestion].text +'</h2></legend>';
 		for (var i=0; i<QUIZ.questions[currentQuestion].answers.length; i++) {
-			html += `<input type="radio" id="radio${i}" name="answers" value="${i}">
+			html += `<input type="radio" name="answers" value="${i}">
 				<label for="radio${i}">${QUIZ.questions[currentQuestion].answers[i]}</label><br>`
 		}
 		html += `<input id="clicker" type="submit" value="Submit">`;
     $('#questionForm').html(html);
 	};			
-	showQuestion();
+	
 
 	$('#questionForm').submit(function(e) {
 		e.preventDefault();
 		var answer = $('input[name = "answers"]:checked').val();
+		$('.answeredQuestion').css('display','block');
 		if (answer == QUIZ.questions[currentQuestion].correct) {
 			scoreCount++;
-			$('.answeredQuestion').text(scoreCount +' correct answers');
+			$('.score').text(scoreCount +' correct answers');
+			$('.answeredQuestion').text('Correct').fadeOut(4000);
 		} else {
-			$('.answeredQuestion').text('Correct answer was: '+ QUIZ.questions[currentQuestion].answers[QUIZ.questions[currentQuestion].correct]).fadeOut(2000);
-			
-			};
-			currentQuestion++;
+			$('.answeredQuestion').text('Correct answer was: '+ QUIZ.questions[currentQuestion].answers[QUIZ.questions[currentQuestion].correct]).fadeOut(4000);
+		};
+		currentQuestion++;
 		if (currentQuestion < QUIZ.questions.length) {
 			showQuestion();
 		} else {
 			$('#questionForm').html('<h1>Quiz finished</h1>');
 		}
-		
 	});
 
+	$('#container').hide();
+	$('#start').click(function(e) {
+		$('#quiz').hide();
+		$('#container').show();
+		showQuestion();
+	});
 });
 	
-	//setTimeout(function() {
-			//},2000);
+	
 
 
 

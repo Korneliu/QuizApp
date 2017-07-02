@@ -1,5 +1,12 @@
-h1 { 
+h1, p { 
 	text-align: center;
+}
+#wrapper {
+	margin: 0 auto;
+	width: 900px;
+}
+#start {
+	margin-left: 428px;
 }
 form h2 {
 	padding-top: 20px;
@@ -21,9 +28,8 @@ legend {
 label {
 	padding-left: 10px;
 	margin-bottom: 20px;
-
 }
 .questionsCounter {
 	margin: 0 auto;
-	width: 800px; 
+	width: 900px; 
 }
